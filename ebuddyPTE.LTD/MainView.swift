@@ -92,7 +92,7 @@ extension MainView {
     private func MyName() -> some View {
         VStack(alignment: .leading, spacing: 16, content: {
             Yudi(placeholder: "Full Name", value: "I Nyoman Yudiantara")
-            Yudi(placeholder: "Apply for", value: "Remote iOS Developer")
+            Yudi(placeholder: "Apply for", value: "Remote iOS Mobile Developer SwiftUI")
         })
         .padding(.horizontal, 16)
         .padding(.vertical, 32)
