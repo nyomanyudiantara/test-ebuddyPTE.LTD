@@ -6,16 +6,18 @@
 //
 
 import SwiftUI
+import AlertToast
 
 struct ContentView: View {
+    @ObservedObject private var allViewRecever: AllViewReceiver = AllViewReceiver.shared
     var body: some View {
-        VStack {
-            Image(systemName: "globe")
-                .imageScale(.large)
-                .foregroundStyle(.tint)
-            Text("Hello, world!")
-        }
-        .padding()
+        MainView()
+            .toast(isPresenting: $allViewRecever.isShowingAFailedAlertToast, alert: {
+                AlertToast(displayMode: .hud, type: .error(Color.red), title: allViewRecever.isShowingAFailedAlertToastMessage)
+            })
+            .toast(isPresenting: $allViewRecever.isShowingASuccessfulAlertToast, alert: {
+                AlertToast(displayMode: .hud, type: .complete(Color.blue), title: allViewRecever.isShowingASuccessfulAlertToastMessage)
+            })
     }
 }
 
