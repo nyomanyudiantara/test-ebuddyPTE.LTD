@@ -178,13 +178,15 @@ struct UploadUser: View {
         ScrollView(showsIndicators: false, content: {
             VStack(content: {
                 Button(action: {
-                    isShowingImageLibrary = true
+                    withAnimation(.smooth(duration: 0.3), {
+                        isShowingImageLibrary = true
+                    })
                 }, label: {
                     if image != nil {
                         image?
                             .resizable()
                             .scaledToFill()
-                            .frame(width: 160)
+                            .frame(width: 140)
                             .clipShape(Circle())
                     } else {
                         Image(systemName: "person.crop.circle")

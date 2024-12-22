@@ -50,11 +50,11 @@ struct UserView: View {
                         // Include all users if `displayByAllGender` is true
                         if displayByAllGender {
                             return true
+                        } else {
+                            guard let gender = user.gender else { return false } // Exclude users without a gender
+                            // Filter based on `sortedByMaleOrFemale` value
+                            return sortedByMaleOrFemale ? gender == .male : gender == .female
                         }
-                        
-                        guard let gender = user.gender else { return false } // Exclude users without a gender
-                        // Filter based on `sortedByMaleOrFemale` value
-                        return sortedByMaleOrFemale ? gender == .male : gender == .female
                     }), id: \.index, content: { users in
                         UserDetail(users: users)
                     })
@@ -191,6 +191,7 @@ extension UserView {
             Button(action: {
                 sortedByMaleOrFemale.toggle()
                 showDisplayByAllGenderButton = true
+                displayByAllGender = false
             }, label: {
                 Label("Show \(sortedByMaleOrFemale ? "Female" : "Male") only", systemImage: sortedByMaleOrFemale ? "figure.stand.dress" : "figure.stand")
             })
